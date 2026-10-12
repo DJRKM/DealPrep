@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Caldera Colors */
+  --color-ember: #fc5000;
+  --color-plasma-violet: #524ae9;
+  --color-sulfur: #f5f28e;
+  --color-limestone: #f7f6f2;
+  --color-pumice: #e2e2df;
+  --color-obsidian: #070607;
+  --color-chalk: #ffffff;
+
+  /* Typography */
+  --font-display: var(--font-bebas), "Bebas Neue", -apple-system, sans-serif;
+  --font-body: var(--font-dm-sans), "DM Sans", -apple-system, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-pumice);
+    color: var(--color-obsidian);
+    font-family: var(--font-body);
+    font-weight: 500;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Caldera Card & Glassmorphism Utilities */
+.caldera-card {
+  background-color: var(--color-limestone);
+  border-radius: 40px;
+  border: 1.5px solid rgba(7, 6, 7, 0.08);
+}
+
+.caldera-pill-btn {
+  border-radius: 800px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.caldera-pill-btn-primary {
+  background-color: var(--color-ember);
+  color: var(--color-chalk);
+  border: 1.5px solid var(--color-ember);
+}
+
+.caldera-pill-btn-primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.caldera-pill-btn-secondary {
+  background-color: transparent;
+  color: var(--color-obsidian);
+  border: 1.5px solid var(--color-obsidian);
+}
+
+.caldera-pill-btn-secondary:hover {
+  background-color: var(--color-obsidian);
+  color: var(--color-chalk);
+}
+
+/* Video Frosted Glass & Grain Treatment */
+.video-frosted-cover {
+  background: rgba(226, 226, 223, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.grain-layer {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E");
+}
+
+/* Halftone Pattern Accent */
+.halftone-dots {
+  background-image: radial-gradient(rgba(7, 6, 7, 0.12) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+/* Print Styles for Executive 1-Page PDF Export */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .caldera-card {
+    border: 1px solid #ddd !important;
+    border-radius: 16px !important;
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
 }
